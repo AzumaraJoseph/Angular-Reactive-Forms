@@ -52,6 +52,13 @@ export class CustomerComponent implements OnInit {
   constructor( private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    // this.customerForm = new FormGroup({
+    //   firstName: new FormControl(),
+    //   lastName: new FormControl(),
+    //   email: new FormControl(),
+    //   sendCatalog: new FormControl(true)
+    // });
+
     this.customerForm = this.fb.group({
       firstName: [ '', [Validators.required, Validators.minLength(3)] ],
       lastName: [ '', [Validators.required, Validators.maxLength(50)] ], // { value: 'Azumara', disabled: true} or ['', validators]
@@ -111,10 +118,52 @@ export class CustomerComponent implements OnInit {
     phoneControl?.updateValueAndValidity();
   }
 
+  /* To make the setMessage fn more generic */
+  /*
+    // Define a generic ValidationMessages interface
+interface ValidationMessages {
+  [key: string]: string;
+}
+
+// Declare emailMessage as a string
+emailMessage!: string;
+
+// Define validation messages for different validators
+private validationMessages: ValidationMessages = {
+  required: 'This field is required.',
+  email: 'Please enter a valid email address.',
+  // Add more validators and messages as needed
+};
+
+// Assuming customerForm is a FormGroup, declare it accordingly
+customerForm: FormGroup;
+
+// ...
+
+// Assuming emailGroup is a FormGroup, modify the path accordingly
+const emailControl = this.customerForm.get('emailGroup.email');
+
+// Subscribe to value changes
+emailControl?.valueChanges.subscribe(value => this.setMessage(emailControl));
+
+// Make setMessage method more generic
+setMessage(c: AbstractControl, controlName: string): void {
+  this.emailMessage = '';
+
+  if ((c.touched || c.dirty) && c.errors) {
+    this.emailMessage = Object.keys(c.errors)
+      .map(key => this.validationMessages[key])
+      .join(' ') || 'Invalid ' + controlName + ' value';
+  }
+}
+ 
+  */
+
   setMessage (c: AbstractControl, controlName: string): void {
     this.errorMessage = '';
     
     if ((c.touched || c.dirty) && c.errors) {
+      //this.emailMessage = Object.keys(c.errors).map((key: string) => this.validationMessages[key as keyof typeof this.validationMessages]).join(' ');
       this.errorMessage = Object.keys(c.errors).map(key => this.validationMessages[key]).join(' ') || 'Invalid ' + controlName + ' value';
     }
   }
