@@ -2,9 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.8.
 
+## Installation
+To install and set up the Angular-Reactive-Forms locally, follow these steps:
+
+```bash
+# Clone the repository
+git clone https://github.com/AzumaraJoseph/Angular-Reactive-Forms.git
+
+# Navigate to the project directory
+cd Angular-Reactive-Forms
+
+# Install dependencies
+npm install
+
+# or if you use yarn
+yarn install
+
+```
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
